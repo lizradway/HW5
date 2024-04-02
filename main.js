@@ -40,6 +40,7 @@ function repeatItems(string) {
     let multiplierSegment = [];
 
     for (const segment of segments) {
+        console.log(segment);
         if (isMultiplier.test(segment)) {
             isInMultiplier = true;
             multiplier = parseInt(segment.split('[')[0]);
@@ -49,6 +50,7 @@ function repeatItems(string) {
                 result = result += multiplierSegment + " ";
             }
             multiplierSegment = [];
+            isInMultiplier = false;
         }
         else if (isInMultiplier) {
             multiplierSegment.push(segment)
@@ -65,7 +67,9 @@ function repeatItems(string) {
 
 function parseCode(code) {
     let repeatedItems = repeatItems(code);
-    let notes = repeatedItems.split(" ").filter(item => item !== "");;
+    console.log(repeatedItems);
+    let notes = repeatedItems.split(" ").filter(item => item !== "");
+    console.log(notes)
 
     notes = notes.map(note => {
         noteData = note.split("@");
