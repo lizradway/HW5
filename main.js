@@ -27,6 +27,9 @@ function scheduleAudio() {
     setTimeout(scheduleAudio, timeElapsedSecs * 1000);
 }
 
+
+    //allows for a repeat operation 
+    //(e.g. "3@340 2[1@220 2@330]"" plays as "3@340 1@220 2@330 1@220 2@330")
 function repeatItems(string) {
     const segments = string.split(/(\d+\[|\])/);
     let result = "";
@@ -61,14 +64,8 @@ function repeatItems(string) {
 
 
 function parseCode(code) {
-    //how could we allow for a repeat operation 
-    //(e.g. "3@340 2[1@220 2@330]"" plays as "3@340 1@220 2@330 1@220 2@330")
-    //how could we allow for two lines that play at the same time?
-    //what if we want variables?
-    //how does this parsing technique limit us?
     let repeatedItems = repeatItems(code);
     let notes = repeatedItems.split(" ").filter(item => item !== "");;
-
 
     notes = notes.map(note => {
         noteData = note.split("@");
